@@ -4,284 +4,252 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Original Mind's Entertainment</title>
-  <meta name="description" content="Original Mind's Entertainment - music label, events & artists from [City/Country].">
+  <meta name="description" content="Original Mind's Entertainment - music label, events & artists.">
   <link rel="icon" href="logo.png" />
-  <style>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Original Mind's Entertainment</title>
 
   <style>
-    body{
-      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: linear-gradient(270deg, #020202, #0b0b0b, #1a1a1a, #0f0f0f);
-      background-size: 800% 800%;
-      animation: animateBg 15s ease infinite;
-      color:#fff;
-      margin:0;
-      padding:0;
-      line-height:1.4;
+    /* ======== ANIMATED BACKGROUND ======== */
+    body {
+      margin: 0;
+      font-family: Inter, system-ui;
+      color: #fff;
+      background: linear-gradient(135deg, #000000, #0e0e0e);
+      background-size: 400% 400%;
+      animation: bgAnimation 15s ease infinite;
+      line-height: 1.4;
     }
 
-    @keyframes animateBg {
+    @keyframes bgAnimation {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
+    /* ================= OTHER STYLES ================ */
+    :root{
+      --accent:#d4b24a;
+      --muted:#bfbfbf;
+      --glass: rgba(255,255,255,0.05);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    a{color:var(--accent);text-decoration:none}
+
     header{
-      text-align:center;
-      padding:40px 0;
+      backdrop-filter:blur(6px);
+      position:sticky;top:0;
+      background:rgba(0,0,0,0.4);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      z-index:50;
     }
 
-    h1{
-      margin:0;
-      font-size:36px;
-      font-weight:700;
+    .container{max-width:1100px;margin:auto;padding:20px}
+
+    .nav{display:flex;align-items:center;justify-content:space-between}
+
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:48px;border-radius:8px}
+    .brand h1{font-size:1.1rem}
+
+    nav ul{display:flex;gap:20px;list-style:none}
+
+    .hero{display:flex;gap:30px;align-items:center;padding:60px 0}
+    .hero-left{flex:1}
+    .eyebrow{padding:6px 10px;border-radius:999px;background:var(--glass);font-size:.8rem}
+    h2{font-size:2.1rem;margin:14px 0}
+    p.lead{color:var(--muted);max-width:640px}
+
+    .cta{margin-top:20px;display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;border:none}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#fff1c6);color:#000}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.1);color:var(--muted)}
+
+    .hero-right{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .card{background:var(--glass);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)}
+
+    .section-title{margin:20px 0 10px}
+
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+
+    .artists-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+    .artist img{width:100%;height:160px;border-radius:8px;object-fit:cover}
+
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+
+    footer{border-top:1px solid rgba(255,255,255,0.1);margin-top:40px;padding:28px 0;color:var(--muted)}
+
+    .contact input, .contact textarea{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:10px;border-radius:8px;color:#fff;width:100%;
     }
 
-    nav{
-      margin-top:20px;
-    }
+    .socials{display:flex;gap:10px}
+    .pill{background:rgba(255,255,255,0.05);padding:6px 12px;border-radius:999px}
 
-    nav a{
-      color:#fff;
-      text-decoration:none;
-      padding:10px 15px;
-      font-size:18px;
+    @media(max-width:800px){
+      .hero{flex-direction:column}
+      .hero-right{grid-template-columns:1fr}
     }
-
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:15px;
-      padding:20px;
-      max-width:800px;
-      margin:auto;
-    }
-
-    .gallery img{
-      width:100%;
-      border-radius:8px;
-    }
-
-    footer{
-      text-align:center;
-      padding:20px;
-      font-size:14px;
-      opacity:0.7;
-    }
-
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Original Mind's Entertainment</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="logo.png" alt="Logo">
+      <div>
+        <h1>Original Mind's Entertainment</h1>
+        <div style="font-size:.8rem;color:var(--muted)">Entertainment · Music · Events</div>
+      </div>
+    </div>
 
-  <section id="gallery" class="gallery">
-    <img src="https://via.placeholder.com/600x400?text=Image+1">
-    <img src="https://via.placeholder.com/600x400?text=Image+2">
-    <img src="https://via.placeholder.com/600x400?text=Image+3">
-    <img src="https://via.placeholder.com/600x400?text=Image+4">
-    <img src="https://via.placeholder.com/600x400?text=Image+5">
-    <img src="https://via.placeholder.com/600x400?text=Image+6">
-    <img src="https://via.placeholder.com/600x400?text=Image+7">
-    <img src="https://via.placeholder.com/600x400?text=Image+8">
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#artists">Artists</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-left">
+      <span class="eyebrow">Original Mind's</span>
+      <h2>We turn beats into experiences.<br><span style="color:var(--accent)">Entertainment with original minds.</span></h2>
+      <p class="lead">Music label, event production, artist management — tunaleta burudani ya ubunifu na hisia halisi.</p>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="#contact">Wasiliana Nasi</a>
+        <a class="btn btn-ghost" href="#artists">Tazama Wasanii</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="card"><h3>Next Event</h3><p>TBD — upload event details.</p></div>
+      <div class="card"><h3>New Release</h3><p>Add Spotify/Apple links.</p></div>
+      <div class="card"><h3>Booking</h3><p>Email: <span class="pill">originalminds730@gmail.com</span></p></div>
+      <div class="card"><h3>Studio</h3><p>Record • Mix • Master</p></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title"><h3>About Us</h3></div>
+    <p style="color:var(--muted)">Original Mind's Entertainment ni lebal ya burudani inayowasaidia wasanii, matamasha na ubunifu wa muziki.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-title"><h3>Services</h3></div>
+    <div class="services">
+      <div class="card"><h4>Event Production</h4><p>Stage • Sound • Planning</p></div>
+      <div class="card"><h4>Artist Management</h4><p>Branding • Bookings</p></div>
+      <div class="card"><h4>Record Studio</h4><p>Recording • Mixing • Mastering</p></div>
+      <div class="card"><h4>Merch & Marketing</h4><p>Design • Printing • Digital</p></div>
+    </div>
+  </section>
+
+  <!-- ARTISTS -->
+  <section id="artists">
+    <div class="section-title"><h3>Artists</h3></div>
+    <div class="artists-grid">
+      <div class="artist card">
+        <img src="https://i.pinimg.com/736x/86/f3/d7/86f3d76115b93397e39eb2845ced92f1.jpg">
+        <strong>Artist 1</strong><div style="color:var(--muted)">Comedy</div>
+      </div>
+
+      <div class="artist card">
+        <img src="https://i.pinimg.com/1200x/57/cb/34/57cb340351f18fcb9eafc3cf47789d2c.jpg">
+        <strong>Artist 2</strong><div style="color:var(--muted)">Music</div>
+      </div>
+
+      <div class="artist card">
+        <img src="https://i.pinimg.com/736x/05/d7/84/05d784805e083785e14d8555d9428c1b.jpg">
+        <strong>Artist 3</strong><div style="color:var(--muted)">Education</div>
+      </div>
+
+      <div class="artist card">
+        <img src="https://i.pinimg.com/736x/c8/d5/69/c8d569008aaaa57e263598f811c5bbc1.jpg">
+        <strong>Artist 4</strong><div style="color:var(--muted)">Film</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-title"><h3>Gallery</h3></div>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/600x400?text=Show+1">
+      <img src="https://via.placeholder.com/600x400?text=Show+2">
+      <img src="https://via.placeholder.com/600x400?text=Studio">
+      <img src="https://via.placeholder.com/600x400?text=Merch">
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title"><h3>Contact</h3></div>
+
+    <div class="contact">
+      <p style="color:var(--muted)">Wasiliana nasi kupitia barua pepe au mitandao ya kijamii.</p>
+      <p><strong>Email:</strong> originalminds730@gmail.com</p>
+      <p><strong>Phone:</strong> +255 62 829 5813</p>
+
+      <div class="socials">
+        <a class="pill" href="#">Instagram</a>
+        <a class="pill" href="#">YouTube</a>
+        <a class="pill" href="#">TikTok</a>
+      </div>
+
+      <form onsubmit="return sendMail();" style="margin-top:10px">
+        <label>Jina</label>
+        <input id="name" placeholder="Jina lako" required>
+
+        <label>Email</label>
+        <input id="email" type="email" placeholder="example@mail.com" required>
+
+        <label>Ujumbe</label>
+        <textarea id="message" rows="4" required></textarea>
+
+        <button class="btn btn-primary" type="submit" style="margin-top:8px">Tuma</button>
+      </form>
+    </div>
   </section>
 
   <footer>
-    © 2025 Original Mind's Entertainment. All Rights Reserved.
-  </footer>
-</body>
-</html>
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <img src="logo.png" alt="Original Mind's Entertainment Logo">
-        <div>
-          <h1>Original Mind's Entertainment</h1>
-          <div style="font-size:.8rem;color:var(--muted)">Entertainment · Music · Events</div>
-        </div>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#artists">Artists</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap">
+      <div>&copy; <span id="year"></span> Original Mind's Entertainment.</div>
+      <div style="color:var(--muted)">Built with ❤️</div>
     </div>
-  </header>
+  </footer>
 
-  <main class="container">
-    <section id="home" class="hero">
-      <div class="hero-left">
-        <span class="eyebrow">Original Mind's</span>
-        <h2>We turn beats into experiences.<br><span style="color:var(--accent)">Entertainment with original minds.</span></h2>
-        <p class="lead">Music label, event production, artist management — tunaleta burudani ya ubunifu, ya kisasa na yenye hisia. Tunashirikiana na wasanii, producers na promoters kuleta matamasha na muziki unaoangukia moyoni.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#contact">Wasiliana Nasi</a>
-          <a class="btn btn-ghost" href="#artists">Tazama Wasanii</a>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div class="card">
-          <h3 style="margin-bottom:8px">Next Event</h3>
-          <p style="color:var(--muted)">TBD — upload event details in repo's data block or edit this card.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin-bottom:8px">New Release</h3>
-          <p style="color:var(--muted)">No current release. Replace with Spotify/Apple links.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin-bottom:8px">Booking</h3>
-          <p style="color:var(--muted)">For bookings: <span class="pill">originalminds730@gmail.com</span></p>
-        </div>
-        <div class="card">
-          <h3 style="margin-bottom:8px">Studio</h3>
-          <p style="color:var(--muted)">Studio services available — record, mix & master.</p>
-        </div>
-      </div>
-    </section>
+</main>
 
-    <section id="about">
-      <div class="section-title">
-        <h3>About Us</h3>
-      </div>
-      <p style="color:var(--muted);margin-bottom:18px">Original Mind's Entertainment ni lebal ya burudani inayojitahidi kuleta ubunifu wa muziki na matukio mbalimbali. Tunatetea sauti za wasanii wachanga na kuendesha matamasha yenye mtiririko mzuri.</p>
-    </section>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    <section id="services">
-      <div class="section-title"><h3>Services</h3></div>
-      <div class="services">
-        <div class="card">
-          <h4>Event Production</h4>
-          <p style="color:var(--muted)">Full event planning, stage, sound & promotions.</p>
-        </div>
-        <div class="card">
-          <h4>Artist Management</h4>
-          <p style="color:var(--muted)">Career guidance, bookings and branding for artists.</p>
-        </div>
-        <div class="card">
-          <h4>Record Studio</h4>
-          <p style="color:var(--muted)">Recording, mixing, mastering and audio production.</p>
-        </div>
-        <div class="card">
-          <h4>Merch & Marketing</h4>
-          <p style="color:var(--muted)">Design, merch printing and digital marketing.</p>
-        </div>
-      </div>
-    </section>
+  function sendMail(){
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent('Website Contact: ' + name);
+    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
 
-    <section id="artists">
-      <div class="section-title"><h3>Artists</h3></div>
-      <div class="artists-grid">
-        <!-- Replace src with actual artist images -->
-        <div class="artist card">
-          <img src="https://i.pinimg.com/736x/86/f3/d7/86f3d76115b93397e39eb2845ced92f1.jpg" alt="Artist 1">
-          <strong>Artist 1</strong>
-          <div style="color:var(--muted);font-size:.9rem">Genre: Comedy</div>
-        </div>
-        <div class="artist card">
-          <img src="https://https://i.pinimg.com/1200x/57/cb/34/57cb340351f18fcb9eafc3cf47789d2c.jpg" alt="Artist 2">
-          <strong>Artist 2</strong>
-          <div style="color:var(--muted);font-size:.9rem">Genre:Music</div>
-        </div>
-        <div class="artist card">
-          <img src="https://i.pinimg.com/736x/05/d7/84/05d784805e083785e14d8555d9428c1b.jpg" alt="Artist 3">
-          <strong>Artist 3</strong>
-          <div style="color:var(--muted);font-size:.9rem">Genre: Education</div>
-        </div>
-        <div class="artist card">
-          <img src="https://i.pinimg.com/736x/c8/d5/69/c8d569008aaaa57e263598f811c5bbc1.jpg" alt="Artist 4">
-          <strong>Artist 4</strong>
-          <div style="color:var(--muted);font-size:.9rem">Genre: Film Industry</div>
-        </div>
-      </div>
-    </section>
+    window.location.href = 'mailto:originalminds730@gmail.com?subject='+subject+'&body='+body;
+    return false;
+  }
+</script>
 
-    <section id="gallery">
-      <div class="section-title"><h3>Gallery</h3></div>
-      <div class="gallery">
-        <img src="https://via.placeholder.com/600x400?text=Show+1" alt="Show 1" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
-        <img src="https://via.placeholder.com/600x400?text=Show+2" alt="Show 2" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
-        <img src="https://via.placeholder.com/600x400?text=Studio" alt="Studio" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
-        <img src="https://via.placeholder.com/600x400?text=Merch" alt="Merch" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-title"><h3>Contact</h3></div>
-      <div class="contact">
-        <div>
-          <p style="color:var(--muted)">Unataka kukua na Original Mind's? Tuma ujumbe au tutembelee kwenye mitandao ya kijamii.</p>
-          <p><strong>Email:</strong> <a href="originalminds730@gmail.com">originalminds730@gmail.com</a></p>
-          <p><strong>Phone:</strong> +255 62 829 5813</p>
-          <div class="socials">
-            <a class="pill" href="#">Instagram</a>
-            <a class="pill" href="#">YouTube</a>
-            <a class="pill" href="#">TikTok</a>
-          </div>
-        </div>
-
-        <form onsubmit="return sendMail();" style="margin-top:8px">
-          <label for="name">Jina</label>
-          <input id="name" placeholder="Jina lako" required>
-          <label for="email">Email</label>
-          <input id="email" type="email" placeholder="example@mail.com" required>
-          <label for="message">Ujumbe</label>
-          <textarea id="message" rows="4" placeholder="Andika ujumbe wako hapa" required></textarea>
-          <div style="margin-top:8px">
-            <button class="btn btn-primary" type="submit">Tuma</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-        <div>&copy; <span id="year"></span> Original Mind's Entertainment. All rights reserved.</div>
-        <div style="color:var(--muted);font-size:.9rem">Built with ❤️ • Hard static site</div>
-      </div>
-    </footer>
-  </main>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    function sendMail(){
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      // Simple mailto fallback
-      const subject = encodeURIComponent('Contact from website: ' + name);
-      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-      window.location.href = 'mailto:info@originalminds.example?subject=' + subject + '&body=' + body;
-      return false; // prevent actual submission
-    }
-  </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
