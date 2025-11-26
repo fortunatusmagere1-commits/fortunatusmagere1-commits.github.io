@@ -7,44 +7,103 @@
   <meta name="description" content="Original Mind's Entertainment - music label, events & artists from [City/Country].">
   <link rel="icon" href="logo.png" />
   <style>
-    /* Basic reset */
-    :root{--bg:#070607;--card:#0f0f10;--accent:#d4b24a;--muted:#bfbfbf;--glass: rgba(255,255,255,0.03)}
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:linear-gradient(180deg,#020202 0%, #0b0b0b 100%);color:#fff;line-height:1.4}
-    a{color:var(--accent);text-decoration:none}
-    header{backdrop-filter:blur(6px);position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));border-bottom:1px solid rgba(255,255,255,0.03)}
-    .container{max-width:1100px;margin:0 auto;padding:20px}
-    .nav{display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:48px;width:auto;border-radius:8px}
-    .brand h1{font-size:1.1rem;letter-spacing:0.6px}
-    nav ul{display:flex;gap:18px;list-style:none}
-    nav li{font-weight:600;color:var(--muted)}
-    .hero{display:flex;gap:30px;align-items:center;padding:60px 0}
-    .hero-left{flex:1}
-    .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass);color:var(--muted);font-weight:700;font-size:0.8rem}
-    h2{font-size:2.1rem;margin:14px 0}
-    p.lead{color:var(--muted);max-width:640px}
-    .cta{margin-top:20px;display:flex;gap:12px}
-    .btn{padding:12px 18px;border-radius:12px;font-weight:700;border:none;cursor:pointer}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),#fff1c6);color:#0a0a0a}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-    .hero-right{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:40px 0}
-    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-    .artists-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
-    .artist{padding:12px;border-radius:10px;text-align:center}
-    .artist img{width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:8px}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-    footer{border-top:1px solid rgba(255,255,255,0.03);margin-top:40px;padding:28px 0;color:var(--muted)}
-    .contact {display:grid;grid-template-columns:1fr;gap:12px}
-    label{font-size:0.85rem;color:var(--muted);margin-bottom:6px}
-    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:#fff;width:100%}
-    .socials{display:flex;gap:10px;align-items:center}
-    .pill{background:rgba(255,255,255,0.03);padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.02)}
-    @media (max-width:800px){.hero{flex-direction:column}.hero-right{grid-template-columns:1fr}} 
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Original Mind's Entertainment</title>
+
+  <style>
+    body{
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(270deg, #020202, #0b0b0b, #1a1a1a, #0f0f0f);
+      background-size: 800% 800%;
+      animation: animateBg 15s ease infinite;
+      color:#fff;
+      margin:0;
+      padding:0;
+      line-height:1.4;
+    }
+
+    @keyframes animateBg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header{
+      text-align:center;
+      padding:40px 0;
+    }
+
+    h1{
+      margin:0;
+      font-size:36px;
+      font-weight:700;
+    }
+
+    nav{
+      margin-top:20px;
+    }
+
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      padding:10px 15px;
+      font-size:18px;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:15px;
+      padding:20px;
+      max-width:800px;
+      margin:auto;
+    }
+
+    .gallery img{
+      width:100%;
+      border-radius:8px;
+    }
+
+    footer{
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+      opacity:0.7;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Original Mind's Entertainment</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="gallery" class="gallery">
+    <img src="https://via.placeholder.com/600x400?text=Image+1">
+    <img src="https://via.placeholder.com/600x400?text=Image+2">
+    <img src="https://via.placeholder.com/600x400?text=Image+3">
+    <img src="https://via.placeholder.com/600x400?text=Image+4">
+    <img src="https://via.placeholder.com/600x400?text=Image+5">
+    <img src="https://via.placeholder.com/600x400?text=Image+6">
+    <img src="https://via.placeholder.com/600x400?text=Image+7">
+    <img src="https://via.placeholder.com/600x400?text=Image+8">
+  </section>
+
+  <footer>
+    © 2025 Original Mind's Entertainment. All Rights Reserved.
+  </footer>
+</body>
+</html>
   </style>
 </head>
 <body>
@@ -219,6 +278,7 @@
 </body>
 
 </html>
+
 
 
 
