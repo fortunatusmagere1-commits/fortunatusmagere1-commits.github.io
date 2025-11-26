@@ -1,257 +1,394 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sw">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Original Mind's Entertainment</title>
-  <meta name="description" content="Original Mind's Entertainment - music label, events & artists.">
-  <link rel="icon" href="logo.png" />
+  <meta name="description" content="Lebo ya muziki, matukio na wasanii wa ubunifu Tanzania.">
+  <link rel="icon" href="logo.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    /* ======== ANIMATED BACKGROUND ======== */
+    :root {
+      --accent: #d4b24a;
+      --muted: #bfbfbf;
+      --glass: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.08);
+      --bg: #0f0f0f;
+      --text: #ffffff;
+    }
+    [data-theme="light"] {
+      --accent: #d4b24a;
+      --muted: #666;
+      --glass: rgba(0,0,0,0.05);
+      --border: rgba(0,0,0,0.1);
+      --bg: #f8f8f8;
+      --text: #111;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      margin: 0;
-      font-family: Inter, system-ui;
-      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       background: linear-gradient(-45deg, #1a1a1a, #2b0000, #000f2b, #2b2b00);
       background-size: 400% 400%;
-      animation: bgAnimation 15s ease infinite;
-      line-height: 1.4;
+      animation: bgAnimation 20s ease infinite;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.5s;
+    }
+    [data-theme="light"] body { background: #f8f8f8; animation: none; }
+
+    @keyframes bgAnimation { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* Header & Mobile Menu */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.5);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+    [data-theme="light"] header { background: rgba(255,255,255,0.8); }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+    .brand img { height: 50px; border-radius: 10px; }
+    .brand h1 { font-size: 1.3rem; font-weight: 700; }
+
+    nav ul { display: flex; gap: 28px; font-weight: 600; }
+    nav a:hover { color: #fff; }
+
+    .mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; color: var(--text); }
+
+    /* Language & Theme Toggle */
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .theme-toggle, .lang-toggle {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 50px;
+      cursor: pointer;
     }
 
-    @keyframes bgAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Hero */
+    .hero {
+      padding: 140px 0 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .hero h2 { font-size: 3.2rem; line-height: 1.2; }
+    .lead { font-size: 1.2rem; color: var(--muted); margin: 20px 0; }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), #fff1c6);
+      color: #000;
+    }
+    .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(212,178,74,0.4); }
+
+    /* Cards & Grid */
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-8px); }
+
+    .grid { display: grid; gap: 24px; margin-top: 30px; }
+    .services { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .artists-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .gallery { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .gallery img { border-radius: 12px; cursor: pointer; transition: 0.3s; }
+    .gallery img:hover { transform: scale(1.05); }
+
+    /* Floating WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px; right: 20px;
+      background: #25d366;
+      color: white;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 999;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+    /* Back to Top */
+    #backTop {
+      position: fixed;
+      bottom: 90px; right: 20px;
+      background: var(--accent);
+      color: #000;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 998;
     }
 
-    /* ================= OTHER STYLES ================ */
-    :root{
-      --accent:#d4b24a;
-      --muted:#bfbfbf;
-      --glass: rgba(255,255,255,0.05);
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.9);
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
     }
+    .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 12px; }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-
-    a{color:var(--accent);text-decoration:none}
-
-    header{
-      backdrop-filter:blur(6px);
-      position:sticky;top:0;
-      background:rgba(0,0,0,0.4);
-      border-bottom:1px solid rgba(255,255,255,0.05);
-      z-index:50;
-    }
-
-    .container{max-width:1100px;margin:auto;padding:20px}
-
-    .nav{display:flex;align-items:center;justify-content:space-between}
-
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:48px;border-radius:8px}
-    .brand h1{font-size:1.1rem}
-
-    nav ul{display:flex;gap:20px;list-style:none}
-
-    .hero{display:flex;gap:30px;align-items:center;padding:60px 0}
-    .hero-left{flex:1}
-    .eyebrow{padding:6px 10px;border-radius:999px;background:var(--glass);font-size:.8rem}
-    h2{font-size:2.1rem;margin:14px 0}
-    p.lead{color:var(--muted);max-width:640px}
-
-    .cta{margin-top:20px;display:flex;gap:12px}
-    .btn{padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;border:none}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),#fff1c6);color:#000}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.1);color:var(--muted)}
-
-    .hero-right{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .card{background:var(--glass);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)}
-
-    .section-title{margin:20px 0 10px}
-
-    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-
-    .artists-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
-    .artist img{width:100%;height:160px;border-radius:8px;object-fit:cover}
-
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-
-    footer{border-top:1px solid rgba(255,255,255,0.1);margin-top:40px;padding:28px 0;color:var(--muted)}
-
-    .contact input, .contact textarea{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-      padding:10px;border-radius:8px;color:#fff;width:100%;
-    }
-
-    .socials{display:flex;gap:10px}
-    .pill{background:rgba(255,255,255,0.05);padding:6px 12px;border-radius:999px}
-
-    @media(max-width:800px){
-      .hero{flex-direction:column}
-      .hero-right{grid-template-columns:1fr}
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+      .hero h2 { font-size: 2.5rem; }
+      nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+             background: rgba(0,0,0,0.95); padding: 20px; gap: 20px; }
+      nav ul.show { display: flex; }
+      .mobile-menu-btn { display: block; }
     }
   </style>
 </head>
+<body data-theme="dark">
 
-<body>
-<header>
-  <div class="container nav">
-    <div class="brand">
-      <img src="logo.png" alt="Logo">
-      <div>
-        <h1>Original Mind's Entertainment</h1>
-        <div style="font-size:.8rem;color:var(--muted)">Entertainment · Music · Events</div>
-      </div>
-    </div>
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/255628295813" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#artists">Artists</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <!-- Back to Top -->
+  <div id="backTop" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
   </div>
-</header>
 
-<main class="container">
-
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="hero-left">
-      <span class="eyebrow">Original Mind's</span>
-      <h2>We turn beats into experiences.<br><span style="color:var(--accent)">Entertainment with original minds.</span></h2>
-      <p class="lead">Music label, event production, artist management — tunaleta burudani ya ubunifu na hisia halisi.</p>
-
-      <div class="cta">
-        <a class="btn btn-primary" href="#contact">Wasiliana Nasi</a>
-        <a class="btn btn-ghost" href="#artists">Tazama Wasanii</a>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="Logo">
+        <div>
+          <h1>Original Mind's Entertainment</h1>
+          <small>Entertainment • Music • Events</small>
+        </div>
       </div>
+
+      <div class="controls">
+        <div class="theme-toggle" onclick="toggleTheme()">Dark/Light</div>
+        <div class="lang-toggle" onclick="toggleLang()">SW/EN</div>
+        <div class="mobile-menu-btn" onclick="document.querySelector('nav ul').classList.toggle('show')">
+          Menu
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#home" onclick="smoothScroll('#home')">Home</a></li>
+          <li><a href="#about" onclick="smoothScroll('#about')">About</a></li>
+          <li><a href="#services" onclick="smoothScroll('#services')">Huduma</a></li>
+          <li><a href="#artists" onclick="smoothScroll('#artists')">Wasanii</a></li>
+          <li><a href="#releases" onclick="smoothScroll('#releases')">Releases</a></li>
+          <li><a href="#gallery" onclick="smoothScroll('#gallery')">Gallery</a></li>
+          <li><a href="#contact" onclick="smoothScroll('#contact')">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <div class="hero-right">
-      <div class="card"><h3>Next Event</h3><p>TBD — upload event details.</p></div>
-      <div class="card"><h3>New Release</h3><p>Add Spotify/Apple links.</p></div>
-      <div class="card"><h3>Booking</h3><p>Email: <span class="pill">originalminds730@gmail.com</span></p></div>
-      <div class="card"><h3>Studio</h3><p>Record • Mix • Master</p></div>
-    </div>
-  </section>
+  <main class="container">
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-title"><h3>About Us</h3></div>
-    <p style="color:var(--muted)">Original Mind's Entertainment ni lebal ya burudani inayowasaidia wasanii, matamasha na ubunifu wa muziki.</p>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="section-title"><h3>Services</h3></div>
-    <div class="services">
-      <div class="card"><h4>Event Production</h4><p>Stage • Sound • Planning</p></div>
-      <div class="card"><h4>Artist Management</h4><p>Branding • Bookings</p></div>
-      <div class="card"><h4>Record Studio</h4><p>Recording • Mixing • Mastering</p></div>
-      <div class="card"><h4>Merch & Marketing</h4><p>Design • Printing • Digital</p></div>
-    </div>
-  </section>
-
-  <!-- ARTISTS -->
-  <section id="artists">
-    <div class="section-title"><h3>Artists</h3></div>
-    <div class="artists-grid">
-      <div class="artist card">
-        <img src="https://i.pinimg.com/736x/86/f3/d7/86f3d76115b93397e39eb2845ced92f1.jpg">
-        <strong>Artist 1</strong><div style="color:var(--muted)">Comedy</div>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div>
+        <span class="eyebrow">Original Mind's Entertainment</span>
+        <h2 data-en="We turn beats into experiences." data-sw="Tunabadilisha midundo kuwa matukio.">Tunabadilisha midundo kuwa matukio.</h2>
+        <p class="lead" data-en="Music label, events & original artists from Tanzania." data-sw="Lebo ya muziki, matukio na wasanii wa asili kutoka Tanzania.">
+          Lebo ya muziki, matukio na wasanii wa asili kutoka Tanzania.
+        </p>
+        <div class="cta">
+          <a href="#contact" class="btn btn-primary">Wasiliana Nasi</a>
+          <a href="#artists" class="btn">Tazama Wasanii</a>
+        </div>
       </div>
-
-      <div class="artist card">
-        <img src="https://i.pinimg.com/1200x/57/cb/34/57cb340351f18fcb9eafc3cf47789d2c.jpg">
-        <strong>Artist 2</strong><div style="color:var(--muted)">Music</div>
+      <div class="grid" style="grid-template-columns: repeat(2,1fr);">
+        <div class="card"><h3>Next Event</h3><p id="countdown">Loading...</p></div>
+        <div class="card"><h3>New Release</h3><p>Coming Soon</p></div>
+        <div class="card"><h3>Email</h3><p>originalminds730@gmail.com</p></div>
+        <div class="card"><h3>Studio</h3><p>Record • Mix • Master</p></div>
       </div>
+    </section>
 
-      <div class="artist card">
-        <img src="https://i.pinimg.com/736x/05/d7/84/05d784805e083785e14d8555d9428c1b.jpg">
-        <strong>Artist 3</strong><div style="color:var(--muted)">Education</div>
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title" data-en="About Us" data-sw="Kuhusu Sisi">Kuhusu Sisi</h2>
+      <p style="max-width:800px; color:var(--muted);">
+        Original Mind's Entertainment ni lebo ya burudani inayowakilisha wasanii wa muziki, comedy na filamu wenye akili za asili. Tunafanya kazi Tanzania na kimataifa.
+      </p>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2 class="section-title">Huduma Zetu</h2>
+      <div class="grid services">
+        <div class="card"><h3>Event Production</h3><p>Stage • Sound • Lighting</p></div>
+        <div class="card"><h3>Artist Management</h3><p>Branding • Booking</p></div>
+        <div class="card"><h3>Recording Studio</h3><p>Professional Recording & Mixing</p></div>
+        <div class="card"><h3>Marketing</h3><p>Social Media • Campaigns</p></div>
       </div>
+    </section>
 
-      <div class="artist card">
-        <img src="https://i.pinimg.com/736x/c8/d5/69/c8d569008aaaa57e263598f811c5bbc1.jpg">
-        <strong>Artist 4</strong><div style="color:var(--muted)">Film</div>
+    <!-- LATEST RELEASES (Spotify + YouTube) -->
+    <section id="releases">
+      <h2 class="section-title">Latest Releases</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px,1fr));">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/CHANGE_WITH_REAL_ID" width="100%" height="352" frameborder="0" allow="encrypted-media"></iframe>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/CHANGE_WITH_REAL_VIDEO" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GALLERY -->
-  <section id="gallery">
-    <div class="section-title"><h3>Gallery</h3></div>
-    <div class="gallery">
-      <img src="https://via.placeholder.com/600x400?text=Show+1">
-      <img src="https://via.placeholder.com/600x400?text=Show+2">
-      <img src="https://via.placeholder.com/600x400?text=Studio">
-      <img src="https://via.placeholder.com/600x400?text=Merch">
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-title"><h3>Contact</h3></div>
-
-    <div class="contact">
-      <p style="color:var(--muted)">Wasiliana nasi kupitia barua pepe au mitandao ya kijamii.</p>
-      <p><strong>Email:</strong> originalminds730@gmail.com</p>
-      <p><strong>Phone:</strong> +255 62 829 5813</p>
-
-      <div class="socials">
-        <a class="pill" href="#">Instagram</a>
-        <a class="pill" href="#">YouTube</a>
-        <a class="pill" href="#">TikTok</a>
+    <!-- ARTISTS -->
+    <section id="artists">
+      <h2 class="section-title">Wasanii Wetu</h2>
+      <div class="grid artists-grid">
+        <div class="card artist"><img src="https://i.pinimg.com/736x/86/f3/d7/86f3d76115b93397e39eb2845ced92f1.jpg" alt=""><strong>Artist 1</strong><small>Comedy</small></div>
+        <div class="card artist"><img src="https://i.pinimg.com/1200x/57/cb/34/57cb340351f18fcb9eafc3cf47789d2c.jpg" alt=""><strong>Artist 2</strong><small>Music</small></div>
+        <div class="card artist"><img src="https://i.pinimg.com/736x/05/d7/84/05d784805e083785e14d8555d9428c1b.jpg" alt=""><strong>Artist 3</strong><small>Motivation</small></div>
+        <div class="card artist"><img src="https://i.pinimg.com/736x/c8/d5/69/c8d569008aaaa57e263598f811c5bbc1.jpg" alt=""><strong>Artist 4</strong><small>Film</small></div>
       </div>
+    </section>
 
-      <form onsubmit="return sendMail();" style="margin-top:10px">
-        <label>Jina</label>
-        <input id="name" placeholder="Jina lako" required>
+    <!-- GALLERY WITH LIGHTBOX -->
+    <section id="gallery">
+      <h2 class="section-title">Gallery</h2>
+      <div class="grid gallery">
+        <img src="https://via.placeholder.com/600x400/222/fff?text=Show+1" onclick="openLightbox(this.src)">
+        <img src="https://via.placeholder.com/600x400/222/fff?text=Studio" onclick="openLightbox(this.src)">
+        <img src="https://via.placeholder.com/600x400/222/fff?text=Event+Night" onclick="openLightbox(this.src)">
+        <img src="https://via.placeholder.com/600x400/222/fff?text=Merch" onclick="openLightbox(this.src)">
+      </div>
+    </section>
 
-        <label>Email</label>
-        <input id="email" type="email" placeholder="example@mail.com" required>
-
-        <label>Ujumbe</label>
-        <textarea id="message" rows="4" required></textarea>
-
-        <button class="btn btn-primary" type="submit" style="margin-top:8px">Tuma</button>
+    <!-- CONTACT (EmailJS) -->
+    <section id="contact">
+      <h2 class="section-title">Wasiliana Nasi</h2>
+      <form id="contactForm" style="max-width:600px;">
+        <input type="text" name="name" placeholder="Jina lako" required style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid var(--border); background:var(--glass); color:var(--text);">
+        <input type="email" name="email" placeholder="Email yako" required style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid var(--border); background:var(--glass); color:var(--text);">
+        <textarea name="message" rows="6" placeholder="Ujumbe wako..." required style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid var(--border); background:var(--glass); color:var(--text);"></textarea>
+        <button type="submit" class="btn btn-primary">Tuma Ujumbe</button>
       </form>
-    </div>
-  </section>
+      <p style="margin-top:20px;">Email: originalminds730@gmail.com | Simu: +255 628 295 813</p>
+    </section>
 
-  <footer>
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap">
-      <div>&copy; <span id="year"></span> Original Mind's Entertainment All rights reserved.</div>
-      <div style="color:var(--muted)">Built with ❤️</div>
-    </div>
-  </footer>
+    <footer style="text-align:center; padding:60px 0; border-top:1px solid var(--border); margin-top:80px; color:var(--muted);">
+      © <span id="year"></span> Original Mind's Entertainment. All rights reserved.<br>
+      Built with ❤️ in Tanzania
+    </footer>
+  </main>
 
-</main>
+  <!-- Lightbox -->
+  <div class="lightbox" onclick="this.style.display='none'">
+    <img src="" id="lightboxImg">
+  </div>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Initialize
+    document.getElementById('year').textContent = new Date().getFullYear();
+    emailjs.init("YOUR_PUBLIC_KEY"); // ← Replace with your EmailJS public key
 
-  function sendMail(){
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    const subject = encodeURIComponent('Website Contact: ' + name);
-    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+    // Smooth Scroll
+    function smoothScroll(target) {
+      document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+    }
 
-    window.location.href = 'mailto:originalminds730@gmail.com?subject='+subject+'&body='+body;
-    return false;
-  }
-</script>
+    // Theme Toggle
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme');
+      document.body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+      localStorage.setItem('theme', current === 'dark' ? 'light' : 'dark');
+    }
+    if (localStorage.getItem('theme') === 'light') document.body.setAttribute('data-theme', 'light');
 
+    // Language Toggle (simple)
+    function toggleLang() {
+      document.querySelectorAll('[data-sw][data-en]').forEach(el => {
+        const temp = el.textContent;
+        el.textContent = el.getAttribute(el.textContent === el.getAttribute('data-sw') ? 'data-en' : 'data-sw');
+        el.setAttribute('data-sw', temp);
+      });
+    }
+
+    // Countdown (example: Dec 31, 2025)
+    function startCountdown() {
+      const countDownDate = new Date("Dec 31, 2025 20:00:00").getTime();
+      const x = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m`;
+        if (distance < 0) { clearInterval(x); document.getElementById("countdown").innerHTML = "LIVE NOW!"; }
+      }, 1000);
+    }
+    startCountdown();
+
+    // Back to top
+    window.onscroll = () => {
+      document.getElementById("backTop").style.display = (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) ? "flex" : "none";
+    };
+    function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+    // Lightbox
+    function openLightbox(src) {
+      document.getElementById("lightboxImg").src = src;
+      document.querySelector(".lightbox").style.display = "flex";
+    }
+
+    // Contact Form (EmailJS)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+        .then(() => alert('Ujumbe umetumwa kikamilifu!'), (error) => alert('Hitilafu: ' + error.text));
+    });
+  </script>
 </body>
 </html>
-
-
